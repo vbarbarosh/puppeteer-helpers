@@ -9,9 +9,6 @@
     "files": [
         "src"
     ],
-    "exports": {
-        "./foo/": "./src/"
-    },
     "keywords": [
         "puppeteer",
         "log"
