@@ -6,7 +6,7 @@ Print logs from puppeteer
 npm i vbarbarosh/puppeteer-log
 ```
 
-## Example of usage
+## Basic usage
 
 ```javascript
 #!/usr/bin/env node
