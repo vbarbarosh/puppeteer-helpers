@@ -1,0 +1,27 @@
+{
+    "name": "@vbarbarosh/puppeteer-log",
+    "author": "Vladimir Barbarosh",
+    "version": "0.0.0",
+    "description": "Print logs from puppeteer",
+    "license": "ISC",
+    "main": "src/puppeteer-log.js",
+    "type": "module",
+    "files": [
+        "src"
+    ],
+    "exports": {
+        "./foo/": "./src/"
+    },
+    "keywords": [
+        "puppeteer",
+        "log"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/vbarbarosh/puppeteer-log.git"
+    },
+    "bugs": {
+        "url": "https://github.com/vbarbarosh/puppeteer-log/issues"
+    },
+    "homepage": "https://github.com/vbarbarosh/puppeteer-log/issues"
+}
