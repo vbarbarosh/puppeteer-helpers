@@ -23,5 +23,9 @@
     "bugs": {
         "url": "https://github.com/vbarbarosh/puppeteer-log/issues"
     },
-    "homepage": "https://github.com/vbarbarosh/puppeteer-log/issues"
+    "homepage": "https://github.com/vbarbarosh/puppeteer-log/issues",
+    "peerDependencies": {
+        "bluebird": "^3.7.2",
+        "json-stable-stringify": "^1.0.1"
+    }
 }

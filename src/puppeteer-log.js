@@ -1,3 +1,6 @@
+import Promise from 'bluebird';
+import json_stringify_safe from 'json-stringify-safe';
+
 function puppeteer_log(page)
 {
     function log(message) {
@@ -58,4 +61,4 @@ function puppeteer_log(page)
     return page;
 }
 
-export default puppeteer_load;
+export default puppeteer_log;
