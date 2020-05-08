@@ -1,10 +1,12 @@
 import Promise from 'bluebird';
 import json_stringify_safe from 'json-stringify-safe';
 
-function puppeteer_log(page)
+function puppeteer_log(page, log = null)
 {
-    function log(message) {
-        console.log(message);
+    if (!log) {
+        log = function log(message) {
+            console.log(message);
+        };
     }
 
     page.on('close', async function () {
