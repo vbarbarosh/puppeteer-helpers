@@ -4,7 +4,7 @@
     "version": "0.0.0",
     "description": "Print logs from puppeteer",
     "license": "ISC",
-    "main": "./src/puppeteer-log.js",
+    "main": "./src/puppeteer_log.js",
     "type": "module",
     "files": [
         "src"
