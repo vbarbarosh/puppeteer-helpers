@@ -9,7 +9,7 @@ npm i vbarbarosh/puppeteer-log
 ## Basic usage
 
 ```javascript
-#!/usr/bin/env node
+#!/usr/bin/env node-esm
 
 import cli from '@vbarbarosh/node-cli';
 import puppeteer from 'puppeteer';
