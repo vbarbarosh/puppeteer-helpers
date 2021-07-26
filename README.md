@@ -29,7 +29,7 @@ async function main()
         // ...
     }
     finally {
-        browser.close();
+        await browser.close();
     }
 }
 ```
