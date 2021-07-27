@@ -1,19 +1,19 @@
-Print logs from puppeteer
+A set of helpers for [Puppeteer](https://pptr.dev/).
 
 ## Installation
 
 ```shell
-npm i vbarbarosh/puppeteer-log
+npm install vbarbarosh/puppeteer-helpers
 ```
 
 ## Basic usage
 
 ```javascript
-#!/usr/bin/env node-esm
+#!/usr/bin/env -S node -r esm
 
 import cli from '@vbarbarosh/node-cli';
 import puppeteer from 'puppeteer';
-import puppeteer_log from '@vbarbarosh/puppeteer-log';
+import puppeteer_log from '@vbarbarosh/puppeteer-helpers/src/puppeteer_log';
 
 cli(main);
 

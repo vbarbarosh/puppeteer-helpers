@@ -1,27 +1,28 @@
 {
-    "name": "@vbarbarosh/puppeteer-log",
-    "author": "Vladimir Barbarosh",
+    "author": "Vladimir Barbarosh <vladimir.barbarosh@gmail.com>",
+    "license": "MIT",
+    "name": "@vbarbarosh/puppeteer-helpers",
     "version": "0.0.0",
-    "description": "Print logs from puppeteer",
-    "license": "ISC",
-    "main": "./src/puppeteer_log.js",
+    "description": "A set of helpers for Puppeteer",
     "files": [
         "src"
     ],
     "keywords": [
-        "puppeteer",
-        "log"
+        "js",
+        "helpers",
+        "puppeteer"
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/vbarbarosh/puppeteer-log.git"
+        "url": "git+https://github.com/vbarbarosh/puppeteer-helpers.git"
     },
     "bugs": {
-        "url": "https://github.com/vbarbarosh/puppeteer-log/issues"
+        "url": "https://github.com/vbarbarosh/puppeteer-helpers/issues"
     },
-    "homepage": "https://github.com/vbarbarosh/puppeteer-log/issues",
+    "homepage": "https://github.com/vbarbarosh/puppeteer-helpers/issues",
     "peerDependencies": {
         "bluebird": "^3.7.2",
+        "puppeteer": "^10.1.0",
         "json-stable-stringify": "^1.0.1"
     }
 }
