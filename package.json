@@ -22,7 +22,7 @@
     "homepage": "https://github.com/vbarbarosh/puppeteer-helpers/issues",
     "peerDependencies": {
         "bluebird": "^3.7.2",
-        "puppeteer": "^10.1.0",
-        "json-stable-stringify": "^1.0.1"
+        "json-stable-stringify": "^1.0.1",
+        "puppeteer": "^10.1.0"
     }
 }
