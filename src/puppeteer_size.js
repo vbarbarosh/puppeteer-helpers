@@ -31,6 +31,7 @@ function puppeteer_size(page)
             http_request.puppeteer_size_resolve = function () {
                 if (resolve) {
                     resolve();
+                    resolve = null;
                 }
                 else {
                     throw new Error('Already resolved');
