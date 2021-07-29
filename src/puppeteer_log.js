@@ -50,7 +50,7 @@ function puppeteer_log(page, log = null)
         log(`[puppeteer_request] ${request.method()} ${request.url()} ${JSON.stringify(request.headers())}`);
     });
     page.on('requestfailed', async function (request) {
-        log(`[puppeteer_requestfailed] ${request.method()} ${request.url()} ${request.failure().errorText}`);
+        log(`[puppeteer_requestfailed] ${request.method()} ${request.url()} ${(request.failure()||{}).errorText||'n/a'}`);
     });
     page.on('requestfinished', async function () {
         log('[puppeteer_requestfinished]');
