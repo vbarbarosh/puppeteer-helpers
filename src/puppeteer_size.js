@@ -10,18 +10,33 @@ function puppeteer_size(page)
 {
     const resources = [];
     const page_promises = [];
+    const console_logs = [];
 
+    page.on('console', page_console);
     page.on('request', page_request);
     page.on('response', page_response);
+    page.on('requestfailed', page_requestfailed);
+    page.on('requestfinished', page_requestfinished);
+
     return {resources, off, wait};
 
     function off() {
+        page.off('console', page_console);
         page.off('request', page_request);
         page.off('response', page_response);
+        page.off('requestfailed', page_requestfailed);
+        page.off('requestfinished', page_requestfinished);
     }
 
     function wait() {
         return Promise.all(page_promises);
+    }
+
+    function page_console(console_message)
+    {
+        if (console_message.type() == 'error') {
+            console_logs.push(new Date().toJSON() + ': ' + console_message.text());
+        }
     }
 
     function page_request(http_request)
@@ -40,10 +55,30 @@ function puppeteer_size(page)
         }));
     }
 
+    // Access to font at 'https://fonts.gstatic.com/l/font?kit=HhyJU5sn9vOmLxNkIwRSjTVNWLEJN7MV2QEJlh_MimhQ83s&skey=91e90d677384bade&v=v19' from origin 'https://domain.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+    // GET https://fonts.gstatic.com/l/font?kit=HhyJU5sn9vOmLxNkIwRSjTVNWLEJN7MV2QEJlh_MimhQ83s&skey=91e90d677384bade&v=v19 net::ERR_FAILED
+    function page_requestfailed(http_request) {
+        http_request.puppeteer_size_resolve();
+        const logs = console_logs.filter(v => v.includes(http_request.url()));
+        const requests = render_requests(http_request);
+        const response = {
+            time: new Date(),
+            url: null,
+            status: null,
+            headers: null,
+            size: null,
+            size_gzip: null,
+        };
+        const error = {message: `Page Request Failed\n\n${logs.join('\n\n')}`};
+        resources.push({requests, response, error});
+    }
+
+    function page_requestfinished(http_request) {
+        http_request.puppeteer_size_resolve();
+    }
+
     async function page_response(http_response)
     {
-        http_response.request().puppeteer_size_resolve();
-
         const response = {
             time: new Date(),
             url: http_response.url(),
@@ -87,20 +122,25 @@ function puppeteer_size(page)
             }
             // The reason to assemble `requests` object here is because `http_request.failure()`
             // will return `null` when called before `await http_response.buffer()`.
-            const requests = http_response.request().redirectChain().slice().concat(http_response.request()).map(function (http_request) {
-                return {
-                    time: http_request.puppeteer_size_time,
-                    url: http_request.url(),
-                    method: http_request.method(),
-                    headers: http_request.headers(),
-                    failure: (http_request.failure()||{}).errorText || null,
-                    resource_type: http_request.resourceType(),
-                };
-            });
+            const requests = render_requests(http_response.request());
             resources.push({requests, response, error});
             resolve();
         }));
     }
+}
+
+function render_requests(http_request_in)
+{
+    return http_request_in.redirectChain().slice().concat(http_request_in).map(function (http_request) {
+        return {
+            time: http_request.puppeteer_size_time,
+            url: http_request.url(),
+            method: http_request.method(),
+            headers: http_request.headers(),
+            failure: (http_request.failure()||{}).errorText || null,
+            resource_type: http_request.resourceType(),
+        };
+    });
 }
 
 function gzip(buffer)
