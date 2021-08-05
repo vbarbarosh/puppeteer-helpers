@@ -41,6 +41,11 @@ function puppeteer_size(page)
 
     function page_request(http_request)
     {
+        // XXX For some reason `page_request` might occur AFTER `page_requestfailed`,
+        //     `page_requestfinished`, and `page_response` events!
+        if (http_request.puppeteer_size_handled) {
+            return;
+        }
         page_promises.push(new Promise(function (resolve) {
             http_request.puppeteer_size_time = new Date();
             http_request.puppeteer_size_resolve = function () {
@@ -58,7 +63,11 @@ function puppeteer_size(page)
     // Access to font at 'https://fonts.gstatic.com/l/font?kit=HhyJU5sn9vOmLxNkIwRSjTVNWLEJN7MV2QEJlh_MimhQ83s&skey=91e90d677384bade&v=v19' from origin 'https://domain.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
     // GET https://fonts.gstatic.com/l/font?kit=HhyJU5sn9vOmLxNkIwRSjTVNWLEJN7MV2QEJlh_MimhQ83s&skey=91e90d677384bade&v=v19 net::ERR_FAILED
     function page_requestfailed(http_request) {
-        http_request.puppeteer_size_resolve();
+        // XXX That's weird, but `page_requestfailed` might come BEFORE `page_request`!
+        if (http_request.puppeteer_size_resolve) {
+            http_request.puppeteer_size_resolve();
+        }
+        http_request.puppeteer_size_handled = true;
         const logs = console_logs.filter(v => v.includes(http_request.url()));
         const requests = render_requests(http_request);
         const response = {
@@ -74,7 +83,11 @@ function puppeteer_size(page)
     }
 
     function page_requestfinished(http_request) {
-        http_request.puppeteer_size_resolve();
+        // XXX That's weird, but `page_requestfinished` might come BEFORE `page_request`!
+        if (http_request.puppeteer_size_resolve) {
+            http_request.puppeteer_size_resolve();
+        }
+        http_request.puppeteer_size_handled = true;
     }
 
     async function page_response(http_response)
@@ -133,7 +146,9 @@ function render_requests(http_request_in)
 {
     return http_request_in.redirectChain().slice().concat(http_request_in).map(function (http_request) {
         return {
-            time: http_request.puppeteer_size_time,
+            // XXX For some reason `page_request` might occur AFTER `page_requestfailed`,
+            //     `page_requestfinished`, and `page_response` events!
+            time: http_request.puppeteer_size_time || null,
             url: http_request.url(),
             method: http_request.method(),
             headers: http_request.headers(),
