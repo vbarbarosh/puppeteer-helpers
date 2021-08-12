@@ -23,6 +23,11 @@
     "peerDependencies": {
         "bluebird": "^3.7.2",
         "json-stable-stringify": "^1.0.1",
+        "json-stringify-safe": "^5.0.1",
         "puppeteer": "^10.1.0"
+    },
+    "devDependencies": {
+        "@vbarbarosh/node-cli": "^1.0.0",
+        "esm": "^3.2.25"
     }
 }
