@@ -2,8 +2,8 @@
 
 import cli from '@vbarbarosh/node-cli';
 import puppeteer from 'puppeteer';
+import puppeteer_log2 from '../src/puppeteer_log2';
 import puppeteer_size from '../src/puppeteer_size';
-import puppeteer_log from '../src/puppeteer_log';
 
 cli(main);
 
@@ -17,7 +17,7 @@ async function main()
     const browser = await puppeteer.launch();
     try {
         const page = await browser.newPage();
-        puppeteer_log(page, s => process.stderr.write(`${s}\n`));
+        puppeteer_log2(page, s => process.stderr.write(`[${new Date().toJSON()}]${s}\n`));
         const size = puppeteer_size(page);
         try {
             await page.goto(process.argv[2], {waitUntil: 'networkidle0'});
@@ -31,8 +31,6 @@ async function main()
         }
     }
     finally {
-        if (browser.isConnected()) {
-            await browser.close()
-        }
+        browser.close(); // do not await for it
     }
 }
