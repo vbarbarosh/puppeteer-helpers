@@ -29,8 +29,6 @@ async function main()
         await page.goto(url, {waitUntil: 'networkidle0'});
     }
     finally {
-        if (browser.isConnected()) {
-            await browser.close()
-        }
+        browser.close(); // do not await for it
     }
 }
