@@ -1,7 +1,7 @@
 import Promise from 'bluebird';
 import json_stringify_safe from 'json-stringify-safe';
 
-function puppeteer_log2(page, log = s => console.log(s))
+function puppeteer_log2(page, log = s => console.log(`[${new Date().toJSON()}]${s}`))
 {
     // https://pptr.dev/#?product=Puppeteer&version=v10.2.0&show=api-class-page
     const listeners = {
