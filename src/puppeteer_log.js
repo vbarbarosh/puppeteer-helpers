@@ -1,6 +1,13 @@
 import Promise from 'bluebird';
 import json_stringify_safe from 'json-stringify-safe';
 
+/**
+ *
+ * @deprecated Deprecated in favor of puppeteer_log2
+ * @param page
+ * @param log
+ * @return {*}
+ */
 function puppeteer_log(page, log = null)
 {
     if (!log) {
