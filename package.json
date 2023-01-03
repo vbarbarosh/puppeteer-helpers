@@ -21,10 +21,10 @@
     },
     "homepage": "https://github.com/vbarbarosh/puppeteer-helpers/issues",
     "peerDependencies": {
-        "bluebird": "^3.7.2",
-        "json-stable-stringify": "^1.0.1",
-        "json-stringify-safe": "^5.0.1",
-        "puppeteer": "^10.1.0"
+        "bluebird": "*",
+        "json-stable-stringify": "*",
+        "json-stringify-safe": "*",
+        "puppeteer": "*"
     },
     "devDependencies": {
         "@vbarbarosh/node-cli": "^1.0.0",
