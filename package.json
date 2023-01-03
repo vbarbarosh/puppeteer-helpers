@@ -27,7 +27,6 @@
         "puppeteer": "*"
     },
     "devDependencies": {
-        "@vbarbarosh/node-cli": "^1.0.0",
-        "esm": "^3.2.25"
+        "@vbarbarosh/node-helpers": "*"
     }
 }

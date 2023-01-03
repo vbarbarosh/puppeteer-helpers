@@ -11,4 +11,4 @@ async function puppeteer_abort_images(page)
     });
 }
 
-export default puppeteer_abort_images;
+module.exports = puppeteer_abort_images;

@@ -1,5 +1,5 @@
-import Promise from 'bluebird';
-import json_stringify_safe from 'json-stringify-safe';
+const Promise = require('bluebird');
+const json_stringify_safe = require('json-stringify-safe');
 
 function puppeteer_log2(page, log = s => console.log(`[${new Date().toJSON()}]${s}`))
 {
@@ -73,4 +73,4 @@ function puppeteer_log2(page, log = s => console.log(`[${new Date().toJSON()}]${
     }
 }
 
-export default puppeteer_log2;
+module.exports = puppeteer_log2;

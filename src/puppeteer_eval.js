@@ -20,4 +20,4 @@ async function puppeteer_eval(page, javascript)
     })()`);
 }
 
-export default puppeteer_eval;
+module.exports = puppeteer_eval;

@@ -1,5 +1,5 @@
-import Promise from 'bluebird';
-import zlib from 'zlib';
+const Promise = require('bluebird');
+const zlib = require('zlib');
 
 /**
  *
@@ -167,4 +167,4 @@ function gzip(buffer)
     });
 }
 
-export default puppeteer_size;
+module.exports = puppeteer_size;

@@ -1,8 +1,8 @@
-#!/usr/bin/env -S node -r esm
+#!/usr/bin/env -S node
 
-import cli from '@vbarbarosh/node-cli';
-import puppeteer from 'puppeteer';
-import puppeteer_log2 from '../../src/puppeteer_log2';
+const cli = require('@vbarbarosh/node-helpers/src/cli');
+const puppeteer = require('puppeteer');
+const puppeteer_log2 = require('../../src/puppeteer_log2');
 
 cli(main);
 
