@@ -9,11 +9,11 @@ npm install vbarbarosh/puppeteer-helpers
 ## Basic usage
 
 ```javascript
-#!/usr/bin/env -S node -r esm
+#!/usr/bin/env node
 
-import cli from '@vbarbarosh/node-cli';
-import puppeteer from 'puppeteer';
-import puppeteer_log from '@vbarbarosh/puppeteer-helpers/src/puppeteer_log';
+const cli = require('@vbarbarosh/node-helpers/src/cli');
+const puppeteer = require('puppeteer');
+const puppeteer_log = require('@vbarbarosh/puppeteer-helpers/src/puppeteer_log');
 
 cli(main);
 

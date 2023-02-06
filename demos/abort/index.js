@@ -1,4 +1,4 @@
-#!/usr/bin/env -S node
+#!/usr/bin/env node
 
 const cli = require('@vbarbarosh/node-helpers/src/cli');
 const puppeteer = require('puppeteer');
