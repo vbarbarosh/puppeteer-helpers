@@ -2,7 +2,7 @@
 
 const cli = require('@vbarbarosh/node-helpers/src/cli');
 const puppeteer = require('puppeteer');
-const puppeteer_log2 = require('../../src/puppeteer_log2');
+const puppeteer_log3 = require('../../src/puppeteer_log3');
 
 cli(main);
 
@@ -13,7 +13,7 @@ async function main()
     const browser = await puppeteer.launch();
     try {
         const page = await browser.newPage();
-        puppeteer_log2(page);
+        puppeteer_log3(page);
 
         // https://github.com/puppeteer/puppeteer/issues/7475#issuecomment-894239401
         // > This issue doesn't occur when caching is disabled via await
@@ -29,6 +29,6 @@ async function main()
         await page.goto(url, {waitUntil: 'networkidle0'});
     }
     finally {
-        browser.close(); // do not await for it
+        await browser.close();
     }
 }
