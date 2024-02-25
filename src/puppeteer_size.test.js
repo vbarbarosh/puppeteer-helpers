@@ -122,6 +122,7 @@ describe('puppeteer_size', function () {
         }
     });
     it('7-video', async function () {
+        this.timeout(10000);
         const server = dev_proxy(fs_path_resolve(__dirname, 'puppeteer_size.d/7-video'));
         const browser = await puppeteer.launch();
         try {
@@ -132,6 +133,24 @@ describe('puppeteer_size', function () {
             size.resources.sort((a,b) => a.response.url && b.response.url && a.response.url.localeCompare(b.response.url));
             const actual = size.resources.map(mapper1);
             assert.deepStrictEqual(actual, await fs_read_json(fs_path_resolve(__dirname, 'puppeteer_size.d/7-video/expected.json')));
+        }
+        finally {
+            server.close();
+            await browser.close();
+        }
+    });
+    it('8-video-http-response-buffer-returned-no-response-after-5-seconds', async function () {
+        this.timeout(10000);
+        const server = dev_proxy(fs_path_resolve(__dirname, 'puppeteer_size.d/8-video-http-response-buffer-returned-no-response-after-5-seconds'));
+        const browser = await puppeteer.launch();
+        try {
+            const page = await browser.newPage();
+            const size = puppeteer_size(page);
+            await page.goto('http://127.0.0.1:3000/static/');
+            await size.wait();
+            size.resources.sort((a,b) => a.response.url && b.response.url && a.response.url.localeCompare(b.response.url));
+            const actual = size.resources.map(mapper1);
+            assert.deepStrictEqual(actual, await fs_read_json(fs_path_resolve(__dirname, 'puppeteer_size.d/8-video-http-response-buffer-returned-no-response-after-5-seconds/expected.json')));
         }
         finally {
             server.close();
@@ -155,7 +174,7 @@ function mapper1(item)
             status: item.response.status,
             size: item.response.size,
         },
-        error: item.error,
+        error: item.error ? item.error.message : null,
     };
 }
 

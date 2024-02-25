@@ -27,9 +27,7 @@
       "status": null,
       "size": null
     },
-    "error": {
-      "message": "Page Request Failed"
-    }
+    "error": "Page Request Failed"
   },
   {
     "requests": [

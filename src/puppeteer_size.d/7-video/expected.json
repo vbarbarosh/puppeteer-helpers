@@ -27,9 +27,7 @@
       "status": null,
       "size": null
     },
-    "error": {
-      "message": "Page Request Failed"
-    }
+    "error": "Page Request Failed"
   },
   {
     "requests": [
@@ -59,11 +57,7 @@
       "status": 206,
       "size": 4206431
     },
-    "error": {
-      "name": "ProtocolError",
-      "message": "Protocol error (Network.getResponseBody): No data found for resource with given identifier",
-      "stack": "ProtocolError: Protocol error (Network.getResponseBody): No data found for resource with given identifier\n    at <instance_members_initializer> (/home/vb/w/puppeteer-helpers/node_modules/puppeteer-core/lib/cjs/puppeteer/common/CallbackRegistry.js:96:14)\n    at new Callback (/home/vb/w/puppeteer-helpers/node_modules/puppeteer-core/lib/cjs/puppeteer/common/CallbackRegistry.js:100:16)\n    at CallbackRegistry.create (/home/vb/w/puppeteer-helpers/node_modules/puppeteer-core/lib/cjs/puppeteer/common/CallbackRegistry.js:22:26)\n    at Connection._rawSend (/home/vb/w/puppeteer-helpers/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Connection.js:80:26)\n    at CdpCDPSession.send (/home/vb/w/puppeteer-helpers/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/CDPSession.js:66:33)\n    at /home/vb/w/puppeteer-helpers/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/HTTPResponse.js:100:57\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
-    }
+    "error": "Protocol error (Network.getResponseBody): No data found for resource with given identifier"
   },
   {
     "requests": [

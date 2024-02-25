@@ -1,0 +1,62 @@
+[
+  {
+    "requests": [
+      {
+        "url": "http://127.0.0.1:3000/favicon.ico",
+        "method": "GET",
+        "failure": null
+      }
+    ],
+    "response": {
+      "url": "http://127.0.0.1:3000/favicon.ico",
+      "status": 404,
+      "size": 28
+    },
+    "error": null
+  },
+  {
+    "requests": [
+      {
+        "url": "http://127.0.0.1:3000/static/",
+        "method": "GET",
+        "failure": null
+      }
+    ],
+    "response": {
+      "url": "http://127.0.0.1:3000/static/",
+      "status": 200,
+      "size": 944
+    },
+    "error": null
+  },
+  {
+    "requests": [
+      {
+        "url": "http://127.0.0.1:3000/static/192357_1080p.mp4",
+        "method": "GET",
+        "failure": null
+      }
+    ],
+    "response": {
+      "url": "http://127.0.0.1:3000/static/192357_1080p.mp4",
+      "status": 206,
+      "size": 24577976
+    },
+    "error": "Error: http_response.buffer() returned no response after 5 seconds"
+  },
+  {
+    "requests": [
+      {
+        "url": "http://127.0.0.1:3000/static/poster.avif",
+        "method": "GET",
+        "failure": null
+      }
+    ],
+    "response": {
+      "url": "http://127.0.0.1:3000/static/poster.avif",
+      "status": 200,
+      "size": 456135
+    },
+    "error": null
+  }
+]
