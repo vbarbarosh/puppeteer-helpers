@@ -30,7 +30,10 @@
         "puppeteer": "*"
     },
     "devDependencies": {
-        "@vbarbarosh/node-helpers": "*",
+        "@vbarbarosh/dev-proxy": "github:vbarbarosh/dev-proxy",
+        "@vbarbarosh/express-helpers": "github:vbarbarosh/express-helpers",
+        "@vbarbarosh/node-helpers": "^3.11.0",
+        "express": "^4.18.2",
         "mocha": "^10.3.0"
     }
 }

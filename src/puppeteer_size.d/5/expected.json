@@ -1,0 +1,56 @@
+[
+  {
+    "requests": [
+      {
+        "url": "http://127.0.0.1:3000/static/"
+      }
+    ],
+    "response": {
+      "url": "http://127.0.0.1:3000/static/",
+      "status": 200,
+      "size": 879
+    },
+    "error": null
+  },
+  {
+    "requests": [
+      {
+        "url": "https://fonts.googleapis.com/css2?family=Anta&display=swap"
+      }
+    ],
+    "response": {
+      "url": "https://fonts.googleapis.com/css2?family=Anta&display=swap",
+      "status": 200,
+      "size": 3476
+    },
+    "error": null
+  },
+  {
+    "requests": [
+      {
+        "url": "https://fonts.gstatic.com/l/font?kit=HhyJU5sn9vOmLxNkIwRSjTVNWLEJN7MV2QEJlh_MimhQ83s&skey=91e90d677384bade&v=v19"
+      }
+    ],
+    "response": {
+      "url": null,
+      "status": null,
+      "size": null
+    },
+    "error": {
+      "message": "Page Request Failed"
+    }
+  },
+  {
+    "requests": [
+      {
+        "url": "https://fonts.gstatic.com/l/font?kit=HhyJU5sn9vOmLxNkIwRSjTVNWLEJN7MV2QEJlh_MimhQ83s&skey=91e90d677384bade&v=v19"
+      }
+    ],
+    "response": {
+      "url": "https://fonts.gstatic.com/l/font?kit=HhyJU5sn9vOmLxNkIwRSjTVNWLEJN7MV2QEJlh_MimhQ83s&skey=91e90d677384bade&v=v19",
+      "status": 400,
+      "size": 0
+    },
+    "error": null
+  }
+]

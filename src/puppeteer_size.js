@@ -78,7 +78,7 @@ function puppeteer_size(page)
             size: null,
             size_gzip: null,
         };
-        const error = {message: `Page Request Failed\n\n${logs.join('\n\n')}`};
+        const error = {message: `Page Request Failed\n\n${logs.join('\n\n')}`.trim()};
         resources.push({requests, response, error});
     }
 

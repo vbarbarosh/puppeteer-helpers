@@ -1,0 +1,15 @@
+[
+  {
+    "requests": [
+      {
+        "url": "file://./puppeteer_size.d/1/index.html"
+      }
+    ],
+    "response": {
+      "url": "file://./puppeteer_size.d/1/index.html",
+      "status": 200,
+      "size": 241
+    },
+    "error": null
+  }
+]

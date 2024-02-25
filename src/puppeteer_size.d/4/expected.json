@@ -1,0 +1,21 @@
+[
+  {
+    "requests": [
+      {
+        "url": "http://127.0.0.1:3000/proxy?url=http://127.0.0.1:3000/static/&redirects=2"
+      },
+      {
+        "url": "http://127.0.0.1:3000/proxy?url=http://127.0.0.1:3000/static/&redirects=1"
+      },
+      {
+        "url": "http://127.0.0.1:3000/proxy?url=http://127.0.0.1:3000/static/"
+      }
+    ],
+    "response": {
+      "url": "http://127.0.0.1:3000/proxy?url=http://127.0.0.1:3000/static/",
+      "status": 200,
+      "size": 241
+    },
+    "error": null
+  }
+]

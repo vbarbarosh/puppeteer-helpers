@@ -1,0 +1,73 @@
+[
+  {
+    "requests": [
+      {
+        "url": "http://127.0.0.1:3000/static/"
+      }
+    ],
+    "response": {
+      "url": "http://127.0.0.1:3000/static/",
+      "status": 200,
+      "size": 781
+    },
+    "error": null
+  },
+  {
+    "requests": [
+      {
+        "url": "http://127.0.0.1:3000/static/183271_720p.mp4"
+      }
+    ],
+    "response": {
+      "url": null,
+      "status": null,
+      "size": null
+    },
+    "error": {
+      "message": "Page Request Failed"
+    }
+  },
+  {
+    "requests": [
+      {
+        "url": "http://127.0.0.1:3000/favicon.ico"
+      }
+    ],
+    "response": {
+      "url": "http://127.0.0.1:3000/favicon.ico",
+      "status": 404,
+      "size": 28
+    },
+    "error": null
+  },
+  {
+    "requests": [
+      {
+        "url": "http://127.0.0.1:3000/static/183271_720p.mp4"
+      }
+    ],
+    "response": {
+      "url": "http://127.0.0.1:3000/static/183271_720p.mp4",
+      "status": 206,
+      "size": 4206431
+    },
+    "error": {
+      "name": "ProtocolError",
+      "message": "Protocol error (Network.getResponseBody): No data found for resource with given identifier",
+      "stack": "ProtocolError: Protocol error (Network.getResponseBody): No data found for resource with given identifier\n    at <instance_members_initializer> (/home/vb/w/puppeteer-helpers/node_modules/puppeteer-core/lib/cjs/puppeteer/common/CallbackRegistry.js:96:14)\n    at new Callback (/home/vb/w/puppeteer-helpers/node_modules/puppeteer-core/lib/cjs/puppeteer/common/CallbackRegistry.js:100:16)\n    at CallbackRegistry.create (/home/vb/w/puppeteer-helpers/node_modules/puppeteer-core/lib/cjs/puppeteer/common/CallbackRegistry.js:22:26)\n    at Connection._rawSend (/home/vb/w/puppeteer-helpers/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Connection.js:80:26)\n    at CdpCDPSession.send (/home/vb/w/puppeteer-helpers/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/CDPSession.js:66:33)\n    at /home/vb/w/puppeteer-helpers/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/HTTPResponse.js:100:57\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
+    }
+  },
+  {
+    "requests": [
+      {
+        "url": "http://127.0.0.1:3000/static/poster.avif"
+      }
+    ],
+    "response": {
+      "url": "http://127.0.0.1:3000/static/poster.avif",
+      "status": 200,
+      "size": 1685669
+    },
+    "error": null
+  }
+]
