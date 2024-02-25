@@ -1,5 +1,5 @@
 /**
- * Evaluate javascript and return the results.
+ * Evaluate javascript and return evaluated result.
  *
  * Allows the following expressions:
  * - new Promise(resolve => setTimeout(resolve.bind(null, 1), 100))
@@ -14,7 +14,7 @@
  */
 async function puppeteer_eval(page, javascript)
 {
-    return await page.evaluate(`(async function () {
+    return page.evaluate(`(async function () {
         const out = (${javascript});
         return (typeof out == 'function') ? out() : out;
     })()`);
