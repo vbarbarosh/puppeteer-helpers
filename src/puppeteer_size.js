@@ -92,6 +92,14 @@ function puppeteer_size(page)
 
     async function page_response(http_response)
     {
+        // XXX Edge Case: When `request` event is emmited __after__ `response`
+        const http_request = http_response.request();
+        if (http_request.puppeteer_size_resolve) {
+            http_request.puppeteer_size_resolve();
+            http_request.puppeteer_size_resolve = null;
+        }
+        http_request.puppeteer_size_handled = true;
+
         const response = {
             time: new Date(),
             url: http_response.url(),
