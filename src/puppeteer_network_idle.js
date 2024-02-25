@@ -1,20 +1,20 @@
-function puppeteer_network_idle(page, timeout = 30000)
+function puppeteer_network_idle(page, timeout_ms = 30000)
 {
-    const uid = Symbol('puppeteer_network_idle');
+    const uid = Symbol('puppeteer_network_idle.uid');
+    const time0 = Date.now();
     const requests = {};
-    const started = Date.now();
     let last_network_event = Date.now();
 
     return new Promise(function (resolve, reject) {
         page.on('*', all);
         poll();
         function poll() {
-            if (Date.now() - started >= timeout) {
+            if (Date.now() - time0 >= timeout_ms) {
                 page.off('*', all);
                 reject(new Error('Timeout'));
                 return;
             }
-            if (Object.values(requests).every(v => v.events.find(vv => vv != 'request'))) {
+            if (Object.values(requests).every(v => v.events.find(vv => vv !== 'request'))) {
                 if (Date.now() - last_network_event > 500) {
                     page.off('*', all);
                     resolve();
