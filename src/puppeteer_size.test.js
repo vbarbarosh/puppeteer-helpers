@@ -18,7 +18,7 @@ describe('puppeteer_size', function () {
             await size.wait();
             const actual = size.resources.map(mapper1);
             assert.deepStrictEqual(actual, [{
-                requests: [{url: 'https://example.com/'}],
+                requests: [{url: 'https://example.com/', method: 'GET', failure: null}],
                 response: {url: 'https://example.com/', status: 200, size: 1256},
                 error: null,
             }]);
@@ -143,9 +143,15 @@ describe('puppeteer_size', function () {
 function mapper1(item)
 {
     return {
-        requests: item.requests.map(v => ({url: clean_url(urlclean(v.url))})),
+        requests: item.requests.map(function (request) {
+            return {
+                url: urlclean2(request.url),
+                method: request.method,
+                failure: request.failure,
+            };
+        }),
         response: {
-            url: item.response.url && clean_url(urlclean(item.response.url)),
+            url: item.response.url && urlclean2(item.response.url),
             status: item.response.status,
             size: item.response.size,
         },
@@ -153,9 +159,9 @@ function mapper1(item)
     };
 }
 
-function clean_url(url)
+function urlclean2(url)
 {
-    return url.replace(`file://${__dirname}`, 'file://.');
+    return urlclean(url).replace(`file://${__dirname}`, 'file://.');
 }
 
 function dev_proxy(dir)
@@ -166,7 +172,6 @@ function dev_proxy(dir)
         req.log = function () {};
         next();
     });
-    fs_path_resolve(__dirname, 'puppeteer_size.d/2/index.html')
     express_routes(app, dev_proxy_routes());
     return app.listen(3000);
 }

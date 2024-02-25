@@ -2,13 +2,19 @@
   {
     "requests": [
       {
-        "url": "http://127.0.0.1:3000/proxy?url=http://127.0.0.1:3000/static/&redirects=2"
+        "url": "http://127.0.0.1:3000/proxy?url=http://127.0.0.1:3000/static/&redirects=2",
+        "method": "GET",
+        "failure": null
       },
       {
-        "url": "http://127.0.0.1:3000/proxy?url=http://127.0.0.1:3000/static/&redirects=1"
+        "url": "http://127.0.0.1:3000/proxy?url=http://127.0.0.1:3000/static/&redirects=1",
+        "method": "GET",
+        "failure": null
       },
       {
-        "url": "http://127.0.0.1:3000/proxy?url=http://127.0.0.1:3000/static/"
+        "url": "http://127.0.0.1:3000/proxy?url=http://127.0.0.1:3000/static/",
+        "method": "GET",
+        "failure": null
       }
     ],
     "response": {

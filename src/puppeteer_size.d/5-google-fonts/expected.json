@@ -2,7 +2,9 @@
   {
     "requests": [
       {
-        "url": "http://127.0.0.1:3000/static/"
+        "url": "http://127.0.0.1:3000/static/",
+        "method": "GET",
+        "failure": null
       }
     ],
     "response": {
@@ -15,7 +17,9 @@
   {
     "requests": [
       {
-        "url": "https://fonts.googleapis.com/css2?family=Anta&display=swap"
+        "url": "https://fonts.googleapis.com/css2?family=Anta&display=swap",
+        "method": "GET",
+        "failure": null
       }
     ],
     "response": {

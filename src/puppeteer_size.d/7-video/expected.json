@@ -2,7 +2,9 @@
   {
     "requests": [
       {
-        "url": "http://127.0.0.1:3000/static/"
+        "url": "http://127.0.0.1:3000/static/",
+        "method": "GET",
+        "failure": null
       }
     ],
     "response": {
@@ -15,7 +17,9 @@
   {
     "requests": [
       {
-        "url": "http://127.0.0.1:3000/static/183271_720p.mp4"
+        "url": "http://127.0.0.1:3000/static/183271_720p.mp4",
+        "method": "GET",
+        "failure": "net::ERR_ABORTED"
       }
     ],
     "response": {
@@ -30,7 +34,9 @@
   {
     "requests": [
       {
-        "url": "http://127.0.0.1:3000/favicon.ico"
+        "url": "http://127.0.0.1:3000/favicon.ico",
+        "method": "GET",
+        "failure": null
       }
     ],
     "response": {
@@ -43,7 +49,9 @@
   {
     "requests": [
       {
-        "url": "http://127.0.0.1:3000/static/183271_720p.mp4"
+        "url": "http://127.0.0.1:3000/static/183271_720p.mp4",
+        "method": "GET",
+        "failure": "net::ERR_ABORTED"
       }
     ],
     "response": {
@@ -60,7 +68,9 @@
   {
     "requests": [
       {
-        "url": "http://127.0.0.1:3000/static/poster.avif"
+        "url": "http://127.0.0.1:3000/static/poster.avif",
+        "method": "GET",
+        "failure": null
       }
     ],
     "response": {

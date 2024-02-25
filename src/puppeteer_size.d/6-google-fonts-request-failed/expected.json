@@ -2,7 +2,9 @@
   {
     "requests": [
       {
-        "url": "http://127.0.0.1:3000/static/"
+        "url": "http://127.0.0.1:3000/static/",
+        "method": "GET",
+        "failure": null
       }
     ],
     "response": {
@@ -15,7 +17,9 @@
   {
     "requests": [
       {
-        "url": "https://fonts.gstatic.com/l/font?kit=HhyJU5sn9vOmLxNkIwRSjTVNWLEJN7MV2QEJlh_MimhQ83s&skey=91e90d677384bade&v=v19"
+        "url": "https://fonts.gstatic.com/l/font?kit=HhyJU5sn9vOmLxNkIwRSjTVNWLEJN7MV2QEJlh_MimhQ83s&skey=91e90d677384bade&v=v19",
+        "method": "GET",
+        "failure": "net::ERR_ABORTED"
       }
     ],
     "response": {
@@ -30,7 +34,9 @@
   {
     "requests": [
       {
-        "url": "https://fonts.gstatic.com/l/font?kit=HhyJU5sn9vOmLxNkIwRSjTVNWLEJN7MV2QEJlh_MimhQ83s&skey=91e90d677384bade&v=v19"
+        "url": "https://fonts.gstatic.com/l/font?kit=HhyJU5sn9vOmLxNkIwRSjTVNWLEJN7MV2QEJlh_MimhQ83s&skey=91e90d677384bade&v=v19",
+        "method": "GET",
+        "failure": "net::ERR_ABORTED"
       }
     ],
     "response": {

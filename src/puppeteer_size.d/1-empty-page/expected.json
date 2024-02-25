@@ -2,7 +2,9 @@
   {
     "requests": [
       {
-        "url": "file://./puppeteer_size.d/1-empty-page/index.html"
+        "url": "file://./puppeteer_size.d/1-empty-page/index.html",
+        "method": "GET",
+        "failure": null
       }
     ],
     "response": {

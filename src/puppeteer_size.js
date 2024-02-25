@@ -2,9 +2,7 @@ const Promise = require('bluebird');
 const zlib = require('zlib');
 
 /**
- *
- * @param page
- * @returns {{wait: (function(): *), resources: *[], off: off}}
+ * Capture requests and return them grouped to facilitate the calculation of how many bytes a page loads.
  */
 function puppeteer_size(page)
 {
@@ -34,7 +32,7 @@ function puppeteer_size(page)
 
     function page_console(console_message)
     {
-        if (console_message.type() == 'error') {
+        if (console_message.type() === 'error') {
             console_logs.push(new Date().toJSON() + ': ' + console_message.text());
         }
     }
@@ -160,7 +158,7 @@ function render_requests(http_request_in)
             url: http_request.url(),
             method: http_request.method(),
             headers: http_request.headers(),
-            failure: (http_request.failure()||{}).errorText || null,
+            failure: http_request.failure()?.errorText || null,
             resource_type: http_request.resourceType(),
         };
     });
