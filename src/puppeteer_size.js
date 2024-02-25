@@ -116,7 +116,7 @@ function puppeteer_size(page)
         page_promises.push(new Promise(async function (resolve) {
             let error = null;
             try {
-                const buffer = await http_response.buffer();
+                const buffer = await Promise.resolve(http_response.buffer()).timeout(5000);
                 response.size = buffer.length;
                 response.size_gzip = (await gzip(buffer)).length;
             }
