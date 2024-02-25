@@ -2,11 +2,11 @@
   {
     "requests": [
       {
-        "url": "file://./puppeteer_size.d/2/index.html"
+        "url": "file://./puppeteer_size.d/2-image-duplicate/index.html"
       }
     ],
     "response": {
-      "url": "file://./puppeteer_size.d/2/index.html",
+      "url": "file://./puppeteer_size.d/2-image-duplicate/index.html",
       "status": 200,
       "size": 1690
     },

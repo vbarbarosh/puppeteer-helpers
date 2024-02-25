@@ -1,0 +1,28 @@
+[
+  {
+    "requests": [
+      {
+        "url": "http://127.0.0.1:3000/static/"
+      }
+    ],
+    "response": {
+      "url": "http://127.0.0.1:3000/static/",
+      "status": 200,
+      "size": 728
+    },
+    "error": null
+  },
+  {
+    "requests": [
+      {
+        "url": "https://fonts.googleapis.com/css2?family=Anta&display=swap"
+      }
+    ],
+    "response": {
+      "url": "https://fonts.googleapis.com/css2?family=Anta&display=swap",
+      "status": 200,
+      "size": 3476
+    },
+    "error": null
+  }
+]

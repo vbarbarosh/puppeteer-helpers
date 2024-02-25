@@ -2,11 +2,11 @@
   {
     "requests": [
       {
-        "url": "file://./puppeteer_size.d/1/index.html"
+        "url": "file://./puppeteer_size.d/1-empty-page/index.html"
       }
     ],
     "response": {
-      "url": "file://./puppeteer_size.d/1/index.html",
+      "url": "file://./puppeteer_size.d/1-empty-page/index.html",
       "status": 200,
       "size": 241
     },

@@ -27,29 +27,29 @@ describe('puppeteer_size', function () {
             await browser.close();
         }
     });
-    it('1', async function () {
+    it('1-empty-page', async function () {
         const browser = await puppeteer.launch();
         try {
             const page = await browser.newPage();
             const size = puppeteer_size(page);
-            await page.goto(`file://${fs_path_resolve(__dirname, 'puppeteer_size.d/1/index.html')}`);
+            await page.goto(`file://${fs_path_resolve(__dirname, 'puppeteer_size.d/1-empty-page/index.html')}`);
             await size.wait();
             const actual = size.resources.map(mapper1);
-            assert.deepStrictEqual(actual, await fs_read_json(fs_path_resolve(__dirname, 'puppeteer_size.d/1/expected.json')));
+            assert.deepStrictEqual(actual, await fs_read_json(fs_path_resolve(__dirname, 'puppeteer_size.d/1-empty-page/expected.json')));
         }
         finally {
             await browser.close();
         }
     });
-    it('2', async function () {
+    it('2-image-duplicate - Image referenced by several IMG elements will be loaded once (will appear as a single request/response object}', async function () {
         const browser = await puppeteer.launch();
         try {
             const page = await browser.newPage();
             const size = puppeteer_size(page);
-            await page.goto(`file://${fs_path_resolve(__dirname, 'puppeteer_size.d/2/index.html')}`);
+            await page.goto(`file://${fs_path_resolve(__dirname, 'puppeteer_size.d/2-image-duplicate/index.html')}`);
             await size.wait();
             const actual = size.resources.map(mapper1);
-            assert.deepStrictEqual(actual, await fs_read_json(fs_path_resolve(__dirname, 'puppeteer_size.d/2/expected.json')));
+            assert.deepStrictEqual(actual, await fs_read_json(fs_path_resolve(__dirname, 'puppeteer_size.d/2-image-duplicate/expected.json')));
         }
         finally {
             await browser.close();
@@ -71,8 +71,8 @@ describe('puppeteer_size', function () {
             await browser.close();
         }
     });
-    it('4', async function () {
-        const server = dev_proxy(fs_path_resolve(__dirname, 'puppeteer_size.d/4'));
+    it('4-request-chain', async function () {
+        const server = dev_proxy(fs_path_resolve(__dirname, 'puppeteer_size.d/4-request-chain'));
         const browser = await puppeteer.launch();
         try {
             const page = await browser.newPage();
@@ -80,15 +80,15 @@ describe('puppeteer_size', function () {
             await page.goto('http://127.0.0.1:3000/proxy?url=http://127.0.0.1:3000/static/&redirects=2');
             await size.wait();
             const actual = size.resources.map(mapper1);
-            assert.deepStrictEqual(actual, await fs_read_json(fs_path_resolve(__dirname, 'puppeteer_size.d/4/expected.json')));
+            assert.deepStrictEqual(actual, await fs_read_json(fs_path_resolve(__dirname, 'puppeteer_size.d/4-request-chain/expected.json')));
         }
         finally {
             server.close();
             await browser.close();
         }
     });
-    it('5', async function () {
-        const server = dev_proxy(fs_path_resolve(__dirname, 'puppeteer_size.d/5'));
+    it('5-google-fonts', async function () {
+        const server = dev_proxy(fs_path_resolve(__dirname, 'puppeteer_size.d/5-google-fonts'));
         const browser = await puppeteer.launch();
         try {
             const page = await browser.newPage();
@@ -97,15 +97,15 @@ describe('puppeteer_size', function () {
             await size.wait();
             size.resources.sort((a,b) => a.response.url && b.response.url && a.response.url.localeCompare(b.response.url));
             const actual = size.resources.map(mapper1);
-            assert.deepStrictEqual(actual, await fs_read_json(fs_path_resolve(__dirname, 'puppeteer_size.d/5/expected.json')));
+            assert.deepStrictEqual(actual, await fs_read_json(fs_path_resolve(__dirname, 'puppeteer_size.d/5-google-fonts/expected.json')));
         }
         finally {
             server.close();
             await browser.close();
         }
     });
-    it('6', async function () {
-        const server = dev_proxy(fs_path_resolve(__dirname, 'puppeteer_size.d/6'));
+    it('6-google-fonts-request-failed', async function () {
+        const server = dev_proxy(fs_path_resolve(__dirname, 'puppeteer_size.d/6-google-fonts-request-failed'));
         const browser = await puppeteer.launch();
         try {
             const page = await browser.newPage();
@@ -114,7 +114,24 @@ describe('puppeteer_size', function () {
             await size.wait();
             size.resources.sort((a,b) => a.response.url && b.response.url && a.response.url.localeCompare(b.response.url));
             const actual = size.resources.map(mapper1);
-            assert.deepStrictEqual(actual, await fs_read_json(fs_path_resolve(__dirname, 'puppeteer_size.d/6/expected.json')));
+            assert.deepStrictEqual(actual, await fs_read_json(fs_path_resolve(__dirname, 'puppeteer_size.d/6-google-fonts-request-failed/expected.json')));
+        }
+        finally {
+            server.close();
+            await browser.close();
+        }
+    });
+    it('7-video', async function () {
+        const server = dev_proxy(fs_path_resolve(__dirname, 'puppeteer_size.d/7-video'));
+        const browser = await puppeteer.launch();
+        try {
+            const page = await browser.newPage();
+            const size = puppeteer_size(page);
+            await page.goto('http://127.0.0.1:3000/static/');
+            await size.wait();
+            size.resources.sort((a,b) => a.response.url && b.response.url && a.response.url.localeCompare(b.response.url));
+            const actual = size.resources.map(mapper1);
+            assert.deepStrictEqual(actual, await fs_read_json(fs_path_resolve(__dirname, 'puppeteer_size.d/7-video/expected.json')));
         }
         finally {
             server.close();
