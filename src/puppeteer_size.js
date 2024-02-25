@@ -2,7 +2,7 @@ const Promise = require('bluebird');
 const zlib = require('zlib');
 
 /**
- * Capture requests and return them grouped to facilitate the calculation of how many bytes a page loads.
+ * Capture requests and return them grouped to facilitate the calculation of how many bytes a page requested.
  */
 function puppeteer_size(page)
 {
