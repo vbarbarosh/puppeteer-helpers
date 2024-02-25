@@ -7,10 +7,6 @@
  * - {foo: await new Promise(resolve => setTimeout(() => resolve(12345), 1))}
  * - function () { return 12345; }
  * - async function () { await new Promise(resolve => setTimeout(resolve, 1)); return 12345; }
- *
- * @param page
- * @param javascript
- * @returns {string}
  */
 async function puppeteer_eval(page, javascript)
 {
