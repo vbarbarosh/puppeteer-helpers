@@ -2,11 +2,11 @@
  * Evaluate javascript and return evaluated result.
  *
  * Allows the following expressions:
- * - new Promise(resolve => setTimeout(resolve.bind(null, 1), 100))
- * - {foo: 1}
- * - {foo: await new Promise(resolve => setTimeout(resolve.bind(null, 1), 100))}
- * - function () { ... }
- * - async function () { ... }
+ * - new Promise(resolve => setTimeout(() => resolve(12345), 1))
+ * - {foo: 12345}
+ * - {foo: await new Promise(resolve => setTimeout(() => resolve(12345), 1))}
+ * - function () { return 12345; }
+ * - async function () { await new Promise(resolve => setTimeout(resolve, 1)); return 12345; }
  *
  * @param page
  * @param javascript

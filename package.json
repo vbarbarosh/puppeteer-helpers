@@ -4,6 +4,9 @@
     "name": "@vbarbarosh/puppeteer-helpers",
     "version": "0.1.2",
     "description": "A set of helpers for Puppeteer",
+    "scripts": {
+        "test": "mocha **/*.test.js"
+    },
     "files": [
         "src"
     ],
@@ -27,6 +30,7 @@
         "puppeteer": "*"
     },
     "devDependencies": {
-        "@vbarbarosh/node-helpers": "*"
+        "@vbarbarosh/node-helpers": "*",
+        "mocha": "^10.3.0"
     }
 }
