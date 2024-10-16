@@ -2,7 +2,7 @@
     "author": "Vladimir Barbarosh <vladimir.barbarosh@gmail.com>",
     "license": "MIT",
     "name": "@vbarbarosh/puppeteer-helpers",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "description": "A set of helpers for Puppeteer",
     "scripts": {
         "test": "mocha **/*.test.js"
