@@ -63,6 +63,9 @@ function puppeteer_size(page)
     // Access to font at 'https://fonts.gstatic.com/l/font?kit=HhyJU5sn9vOmLxNkIwRSjTVNWLEJN7MV2QEJlh_MimhQ83s&skey=91e90d677384bade&v=v19' from origin 'https://domain.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
     // GET https://fonts.gstatic.com/l/font?kit=HhyJU5sn9vOmLxNkIwRSjTVNWLEJN7MV2QEJlh_MimhQ83s&skey=91e90d677384bade&v=v19 net::ERR_FAILED
     function page_requestfailed(http_request) {
+        if (http_request.puppeteer_size_handled) {
+            return;
+        }
         // XXX That's weird, but `page_requestfailed` might come BEFORE `page_request`!
         if (http_request.puppeteer_size_resolve) {
             http_request.puppeteer_size_resolve();
@@ -83,6 +86,9 @@ function puppeteer_size(page)
     }
 
     function page_requestfinished(http_request) {
+        if (http_request.puppeteer_size_handled) {
+            return;
+        }
         // XXX That's weird, but `page_requestfinished` might come BEFORE `page_request`!
         if (http_request.puppeteer_size_resolve) {
             http_request.puppeteer_size_resolve();
