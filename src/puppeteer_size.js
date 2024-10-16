@@ -133,9 +133,9 @@ function puppeteer_size(page)
             }
             // 206 might result in no [requestfailed] nor [requestfinished] being fired
             const http_request = http_response.request();
-            if (http_request.puppeteer_size_resolve) {
+            if (!http_request.puppeteer_size_handled) {
+                http_request.puppeteer_size_handled = true;
                 http_request.puppeteer_size_resolve();
-                http_request.puppeteer_size_resolve = null;
             }
             http_request.puppeteer_size_handled = true;
             // The reason to assemble `requests` object here is because `http_request.failure()`
