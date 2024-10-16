@@ -2,7 +2,9 @@ const Promise = require('bluebird');
 const zlib = require('zlib');
 
 /**
- * Capture requests and return them grouped to facilitate the calculation of how many bytes a page requested.
+ *
+ * @param page
+ * @returns {{wait: (function(): *), resources: *[], off: off}}
  */
 function puppeteer_size(page)
 {
@@ -90,14 +92,6 @@ function puppeteer_size(page)
 
     async function page_response(http_response)
     {
-        // XXX Edge Case: When `request` event is emmited __after__ `response`
-        const http_request = http_response.request();
-        if (http_request.puppeteer_size_resolve) {
-            http_request.puppeteer_size_resolve();
-            http_request.puppeteer_size_resolve = null;
-        }
-        http_request.puppeteer_size_handled = true;
-
         const response = {
             time: new Date(),
             url: http_response.url(),
@@ -121,24 +115,29 @@ function puppeteer_size(page)
 
         page_promises.push(new Promise(async function (resolve) {
             let error = null;
+            // [puppeteer_requestfailed] GET https://domain.com/.../video.mp4 net::ERR_ABORTED
+            // Error: Protocol error (Network.getResponseBody): No data found for resource with given identifier
             try {
-                const buffer = await Promise.resolve(http_response.buffer()).timeout(5000, 'Error: http_response.buffer() returned no response after 5 seconds');
-                response.size = buffer.length;
-                response.size_gzip = (await gzip(buffer)).length;
+                if (response.status === 206) {
+                    // "content-range": "bytes 0-17777969/17777970",
+                    response.size = parseInt(response.headers['content-range'].split('/').pop());
+                }
+                else {
+                    const buffer = await http_response.buffer();
+                    response.size = buffer.length;
+                    response.size_gzip = (await gzip(buffer)).length;
+                }
             }
             catch (_error) {
                 error = {..._error, message: _error.message, stack: _error.stack};
-                // [puppeteer_requestfailed] GET https://domain.com/.../video.mp4 net::ERR_ABORTED
-                // Error: Protocol error (Network.getResponseBody): No data found for resource with given identifier
-                switch (response.status) {
-                case 206:
-                    // "content-range": "bytes 0-17777969/17777970",
-                    response.size = parseInt(response.headers['content-range'].split('/').pop());
-                    break;
-                default:
-                    break;
-                }
             }
+            // 206 might result in no [requestfailed] nor [requestfinished] being fired
+            const http_request = http_response.request();
+            if (http_request.puppeteer_size_resolve) {
+                http_request.puppeteer_size_resolve();
+                http_request.puppeteer_size_resolve = null;
+            }
+            http_request.puppeteer_size_handled = true;
             // The reason to assemble `requests` object here is because `http_request.failure()`
             // will return `null` when called before `await http_response.buffer()`.
             const requests = render_requests(http_response.request());
@@ -158,7 +157,7 @@ function render_requests(http_request_in)
             url: http_request.url(),
             method: http_request.method(),
             headers: http_request.headers(),
-            failure: http_request.failure()?.errorText || null,
+            failure: (http_request.failure()||{}).errorText || null,
             resource_type: http_request.resourceType(),
         };
     });
